@@ -6,6 +6,7 @@ from streamlit_folium import st_folium, folium_static
 import folium
 from neuralprophet import NeuralProphet
 import pathlib
+import pickle
 
 recent_tnx = pd.read_csv('property-wagon/API/data/recent_tnx.csv')
 st.set_page_config(layout="wide")
@@ -61,8 +62,7 @@ def getcoordinates(address):
 
 def predict(address):
     # ENTER THE API FOR PREDICTED PRICE
-    model = NeuralProphet(seasonality_mode="multiplicative", learning_rate=0.1,n_lags=5,n_forecasts=60)
-    m = NeuralProphet(seasonality_mode="multiplicative", learning_rate=0.1)
+    m = pickle.load(open("modelwoodlandspkl.pkl","rb"))
     metrics = m.fit(df, freq='M')
 
     future = m.make_future_dataframe(df, periods=60)

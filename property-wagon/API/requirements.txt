@@ -39,3 +39,4 @@ pytest-asyncio
 neuralprophet
 streamlit
 streamlit_folium
+pickle
