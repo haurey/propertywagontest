@@ -7,7 +7,7 @@ import folium
 from neuralprophet import NeuralProphet
 import pathlib
 
-recent_tnx = pd.read_csv('data/recent_tnx.csv')
+recent_tnx = pd.read_csv('property-wagon/API/data/recent_tnx.csv')
 st.set_page_config(layout="wide")
 st.title('Property Wagon - HDB resale prices')
 
