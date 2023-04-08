@@ -106,7 +106,7 @@ def main():
     else:
         # DISPLAY MAP default
         map = folium.Map(location=[1.35, 103.81], zoom_start=12, control_scale=True)
-        choropleth = folium.Choropleth(geo_data='data/planning-boundary-area.geojson')
+        choropleth = folium.Choropleth(geo_data='property-wagon/API/data/planning-boundary-area.geojson')
         choropleth.geojson.add_to(map)
         ### WIP : Adding average price for each planning boundary area
 
