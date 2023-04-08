@@ -62,7 +62,7 @@ def getcoordinates(address):
 
 def predict(address):
     # ENTER THE API FOR PREDICTED PRICE
-    m = pickle.load(open("modelwoodlandspkl.pkl","rb"))
+    m = pickle.load(open("/app/propertywagontest/property-wagon/API/modelwoodlandspkl.pkl","rb"))
     metrics = m.fit(df, freq='M')
 
     future = m.make_future_dataframe(df, periods=60)
