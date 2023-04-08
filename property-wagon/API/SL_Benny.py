@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import requests
 import numpy as np
-from streamlit_folium import st_folium, folium_static
+from streamlit-folium import st_folium, folium_static
 import folium
 from neuralprophet import NeuralProphet
 import pathlib
