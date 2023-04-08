@@ -23,10 +23,10 @@ submit_button = st.sidebar.button('SUBMIT')
 
 # LOAD DATA
 data_folder = 'property-wagon/propertywagontimeseries/raw_data'
-data_path = data_folder.joinpath('resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv').absolute()
-data_path2 = data_folder.joinpath('resale-flat-prices-based-on-registration-date-from-jan-2015-to-dec-2016.csv').absolute()
-data_path3 = data_folder.joinpath('resale-flat-prices-based-on-registration-date-from-mar-2012-to-dec-2014.csv').absolute()
-data_path4 = data_folder.joinpath('resale-flat-prices-based-on-approval-date-2000-feb-2012.csv').absolute()
+data_path = 'property-wagon/propertywagontimeseries/raw_data/resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv'
+data_path2 = 'property-wagon/propertywagontimeseries/raw_data/resale-flat-prices-based-on-registration-date-from-jan-2015-to-dec-2016.csv'
+data_path3 = 'property-wagon/propertywagontimeseries/raw_data/resale-flat-prices-based-on-registration-date-from-mar-2012-to-dec-2014.csv'
+data_path4 = 'property-wagon/propertywagontimeseries/raw_data/resale-flat-prices-based-on-approval-date-2000-feb-2012.csv'
 
 
 df = pd.read_csv(data_path)
