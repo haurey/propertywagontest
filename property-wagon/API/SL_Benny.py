@@ -22,7 +22,7 @@ storey_range = st.sidebar.selectbox('Select level of flat', df_storey_range['sto
 submit_button = st.sidebar.button('SUBMIT')
 
 # LOAD DATA
-data_folder = pathlib.Path().absolute().parent.joinpath('property-wagon','propertywagontimeseries','raw_data')
+data_folder = 'property-wagon/propertywagontimeseries/raw_data'
 data_path = data_folder.joinpath('resale-flat-prices-based-on-registration-date-from-jan-2017-onwards.csv').absolute()
 data_path2 = data_folder.joinpath('resale-flat-prices-based-on-registration-date-from-jan-2015-to-dec-2016.csv').absolute()
 data_path3 = data_folder.joinpath('resale-flat-prices-based-on-registration-date-from-mar-2012-to-dec-2014.csv').absolute()
