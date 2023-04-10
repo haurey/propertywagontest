@@ -4,6 +4,7 @@ import requests
 import numpy as np
 from streamlit_folium import st_folium, folium_static
 import folium
+import plotly.express as px
 
 st.set_page_config(layout="wide")
 st.title('Property Wagon - HDB resale prices')
@@ -20,7 +21,6 @@ submit_button = st.sidebar.button('SUBMIT')
 
 # LOAD DATA
 recent_tnx = pd.read_csv('property-wagon/API/data/recent_tnx.csv')
-
 
 def getcoordinates(postal_code):
     req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
@@ -111,7 +111,7 @@ def predict(postal_code):
         else:
             y_pred.append(round(request['HDB Resale Price: $']))
 
-    return y_pred
+    return y_pred, town
 
 def main():
     if submit_button:
@@ -129,7 +129,7 @@ def main():
         #                         popup=location_info[["flat_type", "storey_range", "remaining_lease_yr", "resale_price"]]).add_to(map)
 
         # ADD PREDICTION
-        pred_price = predict(postal_code)
+        pred_price,town = predict(postal_code)
         folium.Marker(location=[lat, lon], popup= [postal_code, storey_range, pred_price]).add_to(map)
 
         # DISPLAY ADDRESS BASED ON POSTAL CODE
@@ -145,11 +145,16 @@ def main():
         # add column to calculate distance of amentities from address
         # df_amenities = df_distance[df_distance['distance'] =< 2], sort from smallest distance
         # st.write(df_amenities)
+        
+        plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}4 ROOM.csv')
+        fig = px.line(df, x="ds", y="y",
+                line_shape="spline", render_mode="svg")
+        fig.show()
 
     else:
         # DISPLAY MAP default
         map = folium.Map(location=[1.35, 103.81], zoom_start=12, control_scale=True)
-        choropleth = folium.Choropleth(geo_data='property_wagon/API/data/planning-boundary-area.geojson')
+        choropleth = folium.Choropleth(geo_data='property-wagon/API/data/planning-boundary-area.geojson')
         choropleth.geojson.add_to(map)
         ### WIP : Adding average price for each planning boundary area
 
