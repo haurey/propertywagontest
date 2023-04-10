@@ -147,8 +147,11 @@ def main():
         # # st.write(df_amenities)
         
         plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}2 ROOM.csv')
+        plot_df2 = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}3 ROOM.csv')
         fig = px.line(plot_df, x="ds", y="y",line_shape="spline", render_mode="svg")
+        fig2 = px.line(plot_df2, x="ds", y="y",line_shape="spline", render_mode="svg")
         st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig2, use_container_width=True)
 
     else:
         # DISPLAY MAP default
