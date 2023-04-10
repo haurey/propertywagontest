@@ -138,16 +138,16 @@ def main():
         st_map = folium_static(map, width=800, height=400)
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
-        # WIP : AMENITIES WITHIN 2KM
-        st.header('wip : Nearby Amenities')
-        st.write(recent_tnx.head())
-        # show amenities within 2 km
-        # add column to calculate distance of amentities from address
-        # df_amenities = df_distance[df_distance['distance'] =< 2], sort from smallest distance
-        # st.write(df_amenities)
+        # # WIP : AMENITIES WITHIN 2KM
+        # st.header('wip : Nearby Amenities')
+        # st.write(recent_tnx.head())
+        # # show amenities within 2 km
+        # # add column to calculate distance of amentities from address
+        # # df_amenities = df_distance[df_distance['distance'] =< 2], sort from smallest distance
+        # # st.write(df_amenities)
         
-        plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}4 ROOM.csv')
-        fig = px.line(df, x="ds", y="y",
+        plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}2 ROOM.csv')
+        fig = px.line(plot_df, x="ds", y="y",
                 line_shape="spline", render_mode="svg")
         fig.show()
 
