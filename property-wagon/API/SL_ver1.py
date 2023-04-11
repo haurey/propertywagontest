@@ -105,7 +105,7 @@ def predict(postal_code):
         BASE_URI = "https://property-joycetoh-dpqqbevshq-as.a.run.app/predict?"
         query = f'town={town}&flat_type={flat_type}&storey_range={storey_range}&floor_area_sqm={floor_area_sqm}&flat_model={flat_model}&lease_commence_date={lease_commence_date}&GDP={GDP}&HDB_resale_vol={HDB_resale_vol}'
         endpoint = BASE_URI + query
-        request = requests.get(endpoint).json()
+        request = requests.get(endpoint)
 
         # print(endpoint)
 
@@ -113,6 +113,7 @@ def predict(postal_code):
             st.write(f"Sorry, {query} not found in database.")
             break
         else:
+            request=request.json()
             y_pred.append(round(request['HDB Resale Price: $']))
 
     return y_pred, town
