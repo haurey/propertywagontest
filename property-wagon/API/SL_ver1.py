@@ -120,15 +120,14 @@ def main():
     
  
     
-    
     if submit_button:
-        # DISPLAY MAP with RECENT TNX
-        lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
+ 
         if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200:
             st.write('Invalid postal code, please re-enter.')
             
         else:
-
+            # DISPLAY MAP with RECENT TNX
+            lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
             map = folium.Map(location=[lat, lon], zoom_start=16 , control_scale=True)
 
             # for index, location_info in recent_tnx.iterrows():
