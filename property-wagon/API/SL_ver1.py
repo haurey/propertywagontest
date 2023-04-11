@@ -25,17 +25,19 @@ recent_tnx = pd.read_csv('property-wagon/API/data/recent_tnx.csv')
 def getcoordinates(postal_code):
     
     req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
-    resultsdict = eval(req.text)
-    if len(resultsdict['results'])>0:
-        lat = resultsdict['results'][0]['LATITUDE']
-        lon = resultsdict['results'][0]['LONGITUDE']
-        blk_no = resultsdict['results'][0]['BLK_NO']
-        street_name = resultsdict['results'][0]['ROAD_NAME']
-        address = resultsdict['results'][0]['ADDRESS']
+    if req.status_code==200:
+        resultsdict = eval(req.text)
+        if len(resultsdict['results'])>0:
+            lat = resultsdict['results'][0]['LATITUDE']
+            lon = resultsdict['results'][0]['LONGITUDE']
+            blk_no = resultsdict['results'][0]['BLK_NO']
+            street_name = resultsdict['results'][0]['ROAD_NAME']
+            address = resultsdict['results'][0]['ADDRESS']
 
-        return lat, lon, blk_no, street_name, address
+            return lat, lon, blk_no, street_name, address
     else:
-        return st.write('Invalid postal code')
+        st.write('Invalid postal code')
+    
 
 
 def predict(postal_code):
@@ -116,12 +118,10 @@ def predict(postal_code):
 
 def main():
     if submit_button:
+        # DISPLAY MAP with RECENT TNX
+        lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
         
-        if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200:
-            print(f"Invalid postal code, please enter again.")
-        else:
-            # DISPLAY MAP with RECENT TNX
-            lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
+        if lat is not None:
 
             map = folium.Map(location=[lat, lon], zoom_start=16 , control_scale=True)
 
