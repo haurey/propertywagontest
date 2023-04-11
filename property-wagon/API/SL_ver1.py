@@ -109,7 +109,7 @@ def predict(postal_code):
 
         # print(endpoint)
 
-        if not request:
+        if request.status_code!=200:
             print(f"Sorry, {query} not found in database.")
         else:
             y_pred.append(round(request['HDB Resale Price: $']))
