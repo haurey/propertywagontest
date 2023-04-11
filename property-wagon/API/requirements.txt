@@ -35,3 +35,4 @@ neuralprophet
 streamlit
 streamlit_folium
 plotly_express
+pathlib
