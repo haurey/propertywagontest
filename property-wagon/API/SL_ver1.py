@@ -161,7 +161,7 @@ def main():
             
             flattypelist = ['1 ROOM','2 ROOM','3 ROOM','4 ROOM','5 ROOM','EXECUTIVE','MULTI-GENERATION']
             for i in flattypelist:
-                pathtofile = 'property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv'
+                pathtofile = f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv'
                 if pathtofile.is_file():
                     plot_df = pd.read_csv(pathtofile)
                     fig = px.line(plot_df, x="ds", y="y",line_shape="spline", render_mode="svg")
