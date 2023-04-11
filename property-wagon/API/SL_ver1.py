@@ -118,7 +118,7 @@ def main():
         # DISPLAY MAP with RECENT TNX
         lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
 
-        map = folium.Map(location=[lat, lon], zoom_start=17, control_scale=True)
+        map = folium.Map(location=[lat, lon], zoom_start=19 , control_scale=True)
 
         # for index, location_info in recent_tnx.iterrows():
         #     folium.CircleMarker(location=[location_info["Latitude"],location_info["Longitude"]],
