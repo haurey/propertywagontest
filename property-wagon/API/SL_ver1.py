@@ -23,6 +23,7 @@ submit_button = st.sidebar.button('SUBMIT')
 recent_tnx = pd.read_csv('property-wagon/API/data/recent_tnx.csv')
 
 def getcoordinates(postal_code):
+    
     req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
     resultsdict = eval(req.text)
     if len(resultsdict['results'])>0:
@@ -115,6 +116,12 @@ def predict(postal_code):
 
 def main():
     if submit_button:
+        
+        if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200:
+            print(f"Invalid postal code, please enter again.")
+        
+        else:
+        
         # DISPLAY MAP with RECENT TNX
         lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
 
