@@ -121,44 +121,44 @@ def main():
             print(f"Invalid postal code, please enter again.")
         
         else:
-        
-        # DISPLAY MAP with RECENT TNX
-        lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
+            
+            # DISPLAY MAP with RECENT TNX
+            lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
 
-        map = folium.Map(location=[lat, lon], zoom_start=16 , control_scale=True)
+            map = folium.Map(location=[lat, lon], zoom_start=16 , control_scale=True)
 
-        # for index, location_info in recent_tnx.iterrows():
-        #     folium.CircleMarker(location=[location_info["Latitude"],location_info["Longitude"]],
-        #                         radius=5,
-        #                         color="crimson",
-        #                         fill=True,
-        #                         fill_color="crimson",
-        #                         popup=location_info[["flat_type", "storey_range", "remaining_lease_yr", "resale_price"]]).add_to(map)
+            # for index, location_info in recent_tnx.iterrows():
+            #     folium.CircleMarker(location=[location_info["Latitude"],location_info["Longitude"]],
+            #                         radius=5,
+            #                         color="crimson",
+            #                         fill=True,
+            #                         fill_color="crimson",
+            #                         popup=location_info[["flat_type", "storey_range", "remaining_lease_yr", "resale_price"]]).add_to(map)
 
-        # ADD PREDICTION
-        pred_price,town = predict(postal_code)
-        folium.Marker(location=[lat, lon], popup= [postal_code, storey_range, pred_price]).add_to(map)
+            # ADD PREDICTION
+            pred_price,town = predict(postal_code)
+            folium.Marker(location=[lat, lon], popup= [postal_code, storey_range, pred_price]).add_to(map)
 
-        # DISPLAY ADDRESS BASED ON POSTAL CODE
-        st.write('Address: ', address)
+            # DISPLAY ADDRESS BASED ON POSTAL CODE
+            st.write('Address: ', address)
 
-        st_map = folium_static(map, width=800, height=400)
-        st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
+            st_map = folium_static(map, width=800, height=400)
+            st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
-        # # WIP : AMENITIES WITHIN 2KM
-        # st.header('wip : Nearby Amenities')
-        # st.write(recent_tnx.head())
-        # # show amenities within 2 km
-        # # add column to calculate distance of amentities from address
-        # # df_amenities = df_distance[df_distance['distance'] =< 2], sort from smallest distance
-        # # st.write(df_amenities)
-        
-        plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}2 ROOM.csv')
-        plot_df2 = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}3 ROOM.csv')
-        fig = px.line(plot_df, x="ds", y="y",line_shape="spline", render_mode="svg")
-        fig2 = px.line(plot_df2, x="ds", y="y",line_shape="spline", render_mode="svg")
-        st.plotly_chart(fig, use_container_width=True)
-        st.plotly_chart(fig2, use_container_width=True)
+            # # WIP : AMENITIES WITHIN 2KM
+            # st.header('wip : Nearby Amenities')
+            # st.write(recent_tnx.head())
+            # # show amenities within 2 km
+            # # add column to calculate distance of amentities from address
+            # # df_amenities = df_distance[df_distance['distance'] =< 2], sort from smallest distance
+            # # st.write(df_amenities)
+            
+            plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}2 ROOM.csv')
+            plot_df2 = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}3 ROOM.csv')
+            fig = px.line(plot_df, x="ds", y="y",line_shape="spline", render_mode="svg")
+            fig2 = px.line(plot_df2, x="ds", y="y",line_shape="spline", render_mode="svg")
+            st.plotly_chart(fig, use_container_width=True)
+            st.plotly_chart(fig2, use_container_width=True)
 
     else:
         # DISPLAY MAP default
@@ -170,8 +170,8 @@ def main():
         st_map = folium_static(map, width=800, height=400)
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
-    # CREDITS
-    st.write('Data Source from data.gov.sg, onemap.sg, and several other online sources')
+        # CREDITS
+        st.write('Data Source from data.gov.sg, onemap.sg, and several other online sources')
 
 if __name__ == "__main__":
     main()
