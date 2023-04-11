@@ -119,7 +119,6 @@ def main():
         
         if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200:
             print(f"Invalid postal code, please enter again.")
-        
         else:
             # DISPLAY MAP with RECENT TNX
             lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
