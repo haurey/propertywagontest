@@ -164,7 +164,7 @@ def main():
                 pathtofile = Path(f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
                 if pathtofile.is_file():
                     plot_df = pd.read_csv(pathtofile)
-                    plot_df.rename({'y':'Resale_Price','ds':'Date'},inplace=True)
+                    plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
                     fig = px.line(plot_df, x="Date", y="Resale_Price",line_shape="spline", render_mode="svg",title=f'Average {i} Resale HDB Price in {town}')
                     st.plotly_chart(fig, use_container_width=True)
 
