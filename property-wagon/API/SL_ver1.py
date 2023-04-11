@@ -5,6 +5,7 @@ import numpy as np
 from streamlit_folium import st_folium, folium_static
 import folium
 import plotly.express as px
+import pathlib
 
 st.set_page_config(layout="wide")
 st.title('Property Wagon - HDB resale prices')
@@ -110,7 +111,7 @@ def predict(postal_code):
         # print(endpoint)
 
         if request.status_code!=200:
-            st.write(f"Sorry, {query} not found in database.")
+            # st.write(f"Sorry, {query} not found in database.")
             break
         else:
             request=request.json()
@@ -158,12 +159,13 @@ def main():
             # # df_amenities = df_distance[df_distance['distance'] =< 2], sort from smallest distance
             # # st.write(df_amenities)
             
-            plot_df = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}2 ROOM.csv')
-            plot_df2 = pd.read_csv(f'property-wagon/propertywagontimeseries/processed_data/{town}3 ROOM.csv')
-            fig = px.line(plot_df, x="ds", y="y",line_shape="spline", render_mode="svg")
-            fig2 = px.line(plot_df2, x="ds", y="y",line_shape="spline", render_mode="svg")
-            st.plotly_chart(fig, use_container_width=True)
-            st.plotly_chart(fig2, use_container_width=True)
+            flattypelist = ['1 ROOM','2 ROOM','3 ROOM','4 ROOM','5 ROOM','EXECUTIVE','MULTI-GENERATION']
+            for i in flattypelist:
+                pathtofile = 'property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv'
+                if pathtofile.is_file():
+                    plot_df = pd.read_csv(pathtofile)
+                    fig = px.line(plot_df, x="ds", y="y",line_shape="spline", render_mode="svg")
+                    st.plotly_chart(fig, use_container_width=True)
 
     else:
         # DISPLAY MAP default
