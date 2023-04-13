@@ -193,9 +193,9 @@ def main():
 
         # Display Town Label
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name", "4-ROOM"], labels=False))
-        choropleth.geojson.add_to(st_map)
+        choropleth.geojson.add_to(map)
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
-
+        map
         # CREDITS
     st.write('Data Source from data.gov.sg, onemap.sg, and several other online sources')
 
