@@ -184,8 +184,8 @@ def main():
                 plot_df = pd.read_csv(pathtofile)
                 plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
                 plot_df['Date'] = plot_df['Date'].astype('datetime64')
-                plot_df['Resale_Price_Forecast'] = plot_df.apply(lambda x: x if plot_df['Date']>pd.to_datetime("2023-03-01") else np.nan)
-                plot_df['Resale_Price'] = plot_df.apply(lambda x: x if pd.to_datetime(plot_df['Date'])<=pd.to_datetime("2023-0301") else np.nan)
+                plot_df['Resale_Price_Forecast'] = plot_df['Resale_Price'].apply(lambda x: x if plot_df['Date']>pd.to_datetime("2023-03-01") else np.nan)
+                plot_df['Resale_Price'] = plot_df['Resale_Price'].apply(lambda x: x if pd.to_datetime(plot_df['Date'])<=pd.to_datetime("2023-0301") else np.nan)
                 fig = px.line(plot_df, x="Date", y=["Resale_Price","Resale_Price_Forecast"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
                 st.plotly_chart(fig, use_container_width=True)
 
