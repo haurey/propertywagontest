@@ -68,8 +68,8 @@ def predict(postal_code):
             street_name = street_name.replace(key, val)
 
     # Load data
-    train_data = pd.read_csv('propertwagontest/property-wagon/data/resale-flat-prices-from-2003-2023.csv')
-    econ_data = pd.read_csv('propertwagontest/property-wagon/data/econ_data.csv')
+    train_data = pd.read_csv('propertwagontest/property-wagon/API/data/resale-flat-prices-from-2003-2023.csv')
+    econ_data = pd.read_csv('propertwagontest/property-wagon/API/data/econ_data.csv')
 
     # Retrieve variables
     town_test = train_data[train_data['street_name'] == street_name]['town'].head(1).values[0]
@@ -92,10 +92,10 @@ def predict(postal_code):
     y_pred = []
 
     # load model
-    with open('propertwagontest/property-wagon/API/model', 'rb') as m:
+    with open('propertwagontest/property-wagon/API/data/model', 'rb') as m:
         model = pickle.load(m)
     # load pipeline
-    with open('propertwagontest/property-wagon/API/columntransformer', 'rb') as c:
+    with open('propertwagontest/property-wagon/API/data/columntransformer', 'rb') as c:
         columntransformer = pickle.load(c)
 
     for index, row in type_model_lease_floor.iterrows():
