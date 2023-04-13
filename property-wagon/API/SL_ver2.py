@@ -179,15 +179,16 @@ def main():
     else:
         # DISPLAY MAP default
         map = folium.Map(location=[1.35, 103.81], zoom_start=12, control_scale=True)
-        choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/planning-boundary-area.geojson')
-        choropleth.geojson.add_to(map)
+        # choropleth = folium.Choropleth(geo_data='property-wagon/API/data/planning-boundary-area.geojson')
+        # choropleth.geojson.add_to(map)
         ### WIP : Adding average price for each planning boundary area
 
         st_map = folium_static(map, width=800, height=400)
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
-    # CREDITS
+        # CREDITS
     st.write('Data Source from data.gov.sg, onemap.sg, and several other online sources')
+
 
 if __name__ == "__main__":
     main()
