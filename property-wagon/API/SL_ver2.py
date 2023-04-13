@@ -192,7 +192,7 @@ def main():
         ### WIP : Adding average price for each planning boundary area
 
         # Display Town Label
-        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name"], labels=False))
+        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name", "4-ROOM"], labels=False))
         choropleth.geojson.add_to(st_map)
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
