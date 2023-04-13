@@ -190,7 +190,7 @@ def main():
         choropleth.geojson.add_to(map)
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"], labels=False))
         
-        st_map = folium_static(map, width=800, height=400)
+        folium_static(map, width=1000, height=600)
         
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
         # CREDITS
