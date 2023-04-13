@@ -190,6 +190,9 @@ def main():
         choropleth.geojson.add_to(map)
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"], labels=False))
         
+        
+        st.write('You may hover your cursor over the map to see the median prices of each town.')
+        
         folium_static(map, width=950, height=550)
         
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
