@@ -179,11 +179,22 @@ def main():
     else:
         # DISPLAY MAP default
         map = folium.Map(location=[1.35, 103.81], zoom_start=12, control_scale=True)
-        # choropleth = folium.Choropleth(geo_data='property-wagon/API/data/planning-boundary-area.geojson')
-        # choropleth.geojson.add_to(map)
-        ### WIP : Adding average price for each planning boundary area
+        medium_px = pd.read_csv('data/hdb_median_prices_by_town.csv')
+        choropleth = folium.Choropleth(geo_data='data/merged_gdf.geojson',
+                        data=medium_px,
+                        columns=('Name','4-ROOM'),
+                        key_on='feature.properties.Name',
+                        fill_opacity=0.3,
+                        legend_name='Medium Resale Price of 4-room HDB')
+
 
         st_map = folium_static(map, width=800, height=400)
+        choropleth.geojson.add_to(map)
+        ### WIP : Adding average price for each planning boundary area
+
+        # Display Town Label
+        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name"], labels=False))
+
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
         # CREDITS
