@@ -189,12 +189,12 @@ def main():
 
 
         st_map = folium_static(map, width=800, height=400)
-        choropleth.geojson.add_to(map)
+       
         ### WIP : Adding average price for each planning boundary area
 
         # Display Town Label
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name"], labels=False))
-
+        choropleth.geojson.add_to(st_map)
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
         # CREDITS
