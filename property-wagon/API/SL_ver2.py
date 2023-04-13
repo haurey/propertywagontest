@@ -189,7 +189,7 @@ def main():
                 plot_df2 = plot_df[plot_df['Date']<=pd.to_datetime("2023-03-01")]
                 plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Date')
                 fig = px.line(plot_df3, x="Date", y=["Resale_Price","Forecast"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
-                fig.update_layout(yaxis_title="Resale_Price",
+                fig.update_layout(yaxis_title="Resale_Price∂",
                     title = {
                                     'y':0.9, # new
                                     'x':0.4,
@@ -202,6 +202,7 @@ def main():
 
     else:
         # DISPLAY MAP default
+        bg_image_path = Path('/app/propertywagontest/property-wagon/API/data/HDBBackground.webp')
         map = folium.Map(location=[1.35, 103.81], zoom_start=11, control_scale=True)
         medium_px = pd.read_csv('/app/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
@@ -214,7 +215,7 @@ def main():
         choropleth.geojson.add_to(map)
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"], labels=False))
         
-        
+        st.markdown(bg_image_path, unsafe_allow_html=True)
         st.write('You may hover your cursor over the map to see the median prices of each town.')
         
         folium_static(map, width=950, height=550)
