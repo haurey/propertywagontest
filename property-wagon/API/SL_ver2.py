@@ -238,7 +238,7 @@ def main():
 
 
         set_background(bg_image_path)
-        st.write('You may hover your cursor over the map to see the median prices of each town.')
+        st.write('Hover your cursor over the map to check median prices of each town.')
         
         folium_static(map, width=950, height=550)
         
