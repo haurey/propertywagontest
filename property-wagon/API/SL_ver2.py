@@ -6,6 +6,8 @@ from streamlit_folium import st_folium, folium_static
 import folium
 from IPython.display import display
 import pickle
+from pathlib import Path
+import plotly.express as px
 
 st.set_page_config(layout="wide")
 st.title('Property Wagon - HDB resale prices')
@@ -144,7 +146,7 @@ def predict(postal_code):
     popup_df = popup_df.drop(columns='index')
     # return type_model_lease_floor
     # return y_pred_df
-    return popup_df
+    return popup_df, town_test
 
 def main():
     # if getcoordinates(postal_code) is None:
@@ -162,7 +164,7 @@ def main():
         tooltip = "Click for more details!"
 
         # Price prediction
-        popup_df = predict(postal_code)
+        popup_df, town = predict(postal_code)
         popup_html = popup_df.to_html(
             classes="table table-striped table-hover table-condensed table-responsive"
             )
@@ -174,6 +176,16 @@ def main():
 
         # folium.Marker([30, -100], popup=popup).add_to(m)
         st_map = folium_static(map, width=800, height=400)
+        
+        flattypelist = ['1 ROOM','2 ROOM','3 ROOM','4 ROOM','5 ROOM','EXECUTIVE','MULTI-GENERATION']
+        for i in flattypelist:
+            pathtofile = Path(f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
+            if pathtofile.is_file():
+                plot_df = pd.read_csv(pathtofile)
+                plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
+                fig = px.line(plot_df, x="Date", y="Resale_Price",line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
+                st.plotly_chart(fig, use_container_width=True)
+
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
 
     else:
@@ -183,7 +195,7 @@ def main():
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
                                columns=('Name','4-ROOM'),
-                               key_on='feature.properties.Name',fill_color="Greens",
+                               key_on='feature.properties.Name',fill_color="Reds",
                                fill_opacity=0.6,
                                legend_name='Medium Resale Price of 4-room HDB')
         # Display Town Label
