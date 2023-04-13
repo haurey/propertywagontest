@@ -183,7 +183,10 @@ def main():
             if pathtofile.is_file():
                 plot_df = pd.read_csv(pathtofile)
                 plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
-                fig = px.line(plot_df, x="Date", y="Resale_Price",line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
+                
+                plot_df['Resale_Price_Forecast'] = plot_df.apply(lambda x: x if plot_df['Date']>pd.to_datetime("01 March 2023") else np.nan)
+                plot_df['Resale_Price'] = plot_df.apply(lambda x: x if plot_df['Date']<=pd.to_datetime("01 March 2023") else np.nan)
+                fig = px.line(plot_df, x="Date", y=["Resale_Price","Resale_Price_Forecast"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
                 st.plotly_chart(fig, use_container_width=True)
 
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
