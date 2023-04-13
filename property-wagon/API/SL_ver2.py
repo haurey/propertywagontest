@@ -68,8 +68,8 @@ def predict(postal_code):
             street_name = street_name.replace(key, val)
 
     # Load data
-    train_data = pd.read_csv('/app/propertwagontest/property-wagon/API/data/resale-flat-prices-from-2003-2023.csv')
-    econ_data = pd.read_csv('/app/propertwagontest/property-wagon/API/data/econ_data.csv')
+    train_data = pd.read_csv('/app/propertywagontest/property-wagon/API/data/resale-flat-prices-from-2003-2023.csv')
+    econ_data = pd.read_csv('/app/propertywagontest/property-wagon/API/data/econ_data.csv')
 
     # Retrieve variables
     town_test = train_data[train_data['street_name'] == street_name]['town'].head(1).values[0]
@@ -92,10 +92,10 @@ def predict(postal_code):
     y_pred = []
 
     # load model
-    with open('/app/propertwagontest/property-wagon/API/data/model', 'rb') as m:
+    with open('/app/propertywagontest/property-wagon/API/data/model', 'rb') as m:
         model = pickle.load(m)
     # load pipeline
-    with open('/app/propertwagontest/property-wagon/API/data/columntransformer', 'rb') as c:
+    with open('/app/propertywagontest/property-wagon/API/data/columntransformer', 'rb') as c:
         columntransformer = pickle.load(c)
 
     for index, row in type_model_lease_floor.iterrows():
@@ -178,7 +178,7 @@ def main():
     else:
         # DISPLAY MAP default
         map = folium.Map(location=[1.35, 103.81], zoom_start=12, control_scale=True)
-        choropleth = folium.Choropleth(geo_data='/app/propertwagontest/property-wagon/API/data/planning-boundary-area.geojson')
+        choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/planning-boundary-area.geojson')
         choropleth.geojson.add_to(map)
         ### WIP : Adding average price for each planning boundary area
 
