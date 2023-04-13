@@ -181,12 +181,11 @@ def main():
         map = folium.Map(location=[1.35, 103.81], zoom_start=12, control_scale=True)
         medium_px = pd.read_csv('/app/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
-                        data=medium_px,
-                        columns=('Name'),
-                        key_on='feature.properties.Name',
-                        fill_opacity=0.3,
-                        legend_name='Medium Resale Price')
-
+                               data=medium_px,
+                               columns=('Name','4-ROOM'),
+                               key_on='feature.properties.Name',
+                               fill_opacity=0.3,
+                               legend_name='Medium Resale Price of 4-room HDB')
 
         st_map = folium_static(map, width=800, height=400)
        
