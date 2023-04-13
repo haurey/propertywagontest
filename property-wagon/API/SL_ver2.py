@@ -123,7 +123,7 @@ def predict(postal_code):
            town=[town_test],
            flat_model=[flat_model_test],
            flat_type=[flat_type_test],
-        #    storey_range=[storey_range_test],
+           storey_range=[storey_range_test],
            floor_area_sqm=[floor_area_sqm_test],
            lease_commence_date=[lease_commence_date_test],
            GDP=[GDP_test],
