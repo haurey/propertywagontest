@@ -140,7 +140,8 @@ def predict(postal_code):
                              "flat_model": "Flat Model",
                              "lease_commence_date": "Lease Commcence Date",
                              "floor_area_sqm": "Floor Area (sqm)"},  inplace=True)
-    popup_df.reset_index(inplace=True).drop(columns='index',inplace=True)
+    popup_df = popup_df.reset_index()
+    popup_df = popup_df.drop(columns='index')
     # return type_model_lease_floor
     # return y_pred_df
     return popup_df
