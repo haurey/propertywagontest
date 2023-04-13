@@ -11,7 +11,7 @@ import plotly.express as px
 import base64
 
 st.set_page_config(layout="wide")
-st.title('Property Wagon - HDB resale prices',anchor='Center')
+st.title('Property Wagon - HDB Resale Price Predictor')
 
 # SIDEBAR
 st.sidebar.header('Enter the postal code and floor level to find out more!')
