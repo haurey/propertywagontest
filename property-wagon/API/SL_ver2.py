@@ -188,7 +188,7 @@ def main():
                                legend_name='Medium Resale Price of 4-room HDB')
         # Display Town Label
         choropleth.geojson.add_to(map)
-        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4 ROOM"], labels=False))
+        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"], labels=False))
         
         st_map = folium_static(map, width=800, height=400)
         
