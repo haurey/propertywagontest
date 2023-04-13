@@ -14,13 +14,13 @@ st.set_page_config(layout="wide")
 st.title('Property Wagon - HDB resale prices',anchor='Center')
 
 # SIDEBAR
-st.sidebar.header('Enter the postal code and find out more!')
+st.sidebar.header('Enter the postal code and floor level to find out more!')
 # df_flat_type = pd.DataFrame({'flat_type': ['1 ROOM', '2 ROOM', '3 ROOM', '4 ROOM', '5 ROOM', 'EXECUTIVE', 'MULTI-GENERATION']})
 df_storey_range = pd.DataFrame({'storey_range': ['01 TO 03', '04 TO 06', '07 TO 09', '10 TO 12', '13 TO 15', '16 TO 18', '19 TO 21', '22 TO 24', '25 TO 27', '28 TO 30', '31 TO 33', '34 TO 36', '37 TO 39', '40 TO 42', '43 TO 45', '46 TO 48', '49 TO 51']})
 
 postal_code = st.sidebar.text_input('Postal Code', 'Enter Postal Code')
 # flat_type = st.sidebar.selectbox('Select number of rooms', df_flat_type['flat_type'])
-storey_range_test = st.sidebar.selectbox('Select level of flat', df_storey_range['storey_range'])
+storey_range_test = st.sidebar.selectbox('Floor level', df_storey_range['storey_range'])
 submit_button = st.sidebar.button('SUBMIT')
 
 
