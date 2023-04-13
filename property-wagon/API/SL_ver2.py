@@ -183,8 +183,8 @@ def main():
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
                                columns=('Name','4-ROOM'),
-                               key_on='feature.properties.Name',fill_color="Oranges",
-                               fill_opacity=0.3,
+                               key_on='feature.properties.Name',fill_color="Reds",
+                               fill_opacity=0.6,
                                legend_name='Medium Resale Price of 4-room HDB')
         # Display Town Label
         choropleth.geojson.add_to(map)
