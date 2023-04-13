@@ -8,6 +8,7 @@ from IPython.display import display
 import pickle
 from pathlib import Path
 import plotly.express as px
+import base64
 
 st.set_page_config(layout="wide")
 st.title('Property Wagon - HDB resale prices')
@@ -148,6 +149,25 @@ def predict(postal_code):
     # return y_pred_df
     return popup_df, town_test
 
+bg_image_path = Path('/app/propertywagontest/property-wagon/API/data/HDBBackground.webp')
+
+def get_base64(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+def set_background(png_file):
+        bin_str = get_base64(png_file)
+        page_bg_img = '''
+        <style>
+        body {
+        background-image: url("data:image/png;base64,%s");
+        background-size: cover;
+        }
+        </style>
+        ''' % bin_str
+        st.markdown(page_bg_img, unsafe_allow_html=True)
+
 def main():
     # if getcoordinates(postal_code) is None:
     #     return st.write('Invalid postal code, please enter a valid postal code.')
@@ -202,7 +222,7 @@ def main():
 
     else:
         # DISPLAY MAP default
-        bg_image_path = Path('/app/propertywagontest/property-wagon/API/data/HDBBackground.webp')
+        
         map = folium.Map(location=[1.35, 103.81], zoom_start=11, control_scale=True)
         medium_px = pd.read_csv('/app/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
@@ -214,8 +234,10 @@ def main():
         # Display Town Label
         choropleth.geojson.add_to(map)
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"], labels=False))
-        
-        st.markdown(bg_image_path, unsafe_allow_html=True)
+
+
+
+        set_background(bg_image_path)
         st.write('You may hover your cursor over the map to see the median prices of each town.')
         
         folium_static(map, width=950, height=550)
