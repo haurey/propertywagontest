@@ -234,7 +234,7 @@ def main():
                                fill_opacity=0.6)
         # Display Town Label
         choropleth.geojson.add_to(map)
-        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOMTest"], labels=False))
+        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"],aliases=["Town:","Price:$"] ,labels=False))
 
 
 
