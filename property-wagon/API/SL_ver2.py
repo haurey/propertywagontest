@@ -12,14 +12,6 @@ import base64
 
 st.set_page_config(layout="wide")
 
-st.markdown("""
-    <style>
-        .stApp {
-        background: url("https://photos.app.goo.gl/ay9E8xVGHP1emtpF7");
-        background-size: cover;
-        }
-    </style>""", unsafe_allow_html=True)
-
 st.title('Property Wagon - HDB Resale Price Predictor')
 
 # SIDEBAR
@@ -164,13 +156,6 @@ def main():
     #     return st.write('Invalid postal code, please enter a valid postal code.')
 
     if submit_button:
-        st.markdown("""
-    <style>
-        .stApp {
-        background: url("https://photos.app.goo.gl/ay9E8xVGHP1emtpF7");
-        background-size: cover;
-        }
-    </style>""", unsafe_allow_html=True)
         if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200 or (requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').content==b'{"found":0,"totalNumPages":0,"pageNum":1,"results":[]}'): 
             st.write('Invalid postal code, please re-enter.')
         else: 
