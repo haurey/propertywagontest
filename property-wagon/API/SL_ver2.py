@@ -206,11 +206,11 @@ def main():
                 plot_df.rename(columns={'y':'Resale_Price','ds':'Year'},inplace=True)
                 plot_df['Year'] = plot_df['Year'].astype('datetime64')
                 plot_df1 = plot_df[plot_df['Year']>=pd.to_datetime("2023-03-01")]
-                plot_df1.rename(columns={'Resale_Price':'Forecast'},inplace=True)
+                plot_df1.rename(columns={'Resale_Price':'Forecasted_Price'},inplace=True)
                 plot_df2 = plot_df[plot_df['Year']<=pd.to_datetime("2023-03-01")]
                 plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Year')
                 fig = px.line(plot_df3, x="Year", y=["Resale_Price","Forecast"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
-                fig.update_layout(yaxis_title="Price",
+                fig.update_layout(yaxis_title="Price($)",
                     title = {
                                     'y':0.9, # new
                                     'x':0.4,
@@ -234,7 +234,7 @@ def main():
                                fill_opacity=0.6)
         # Display Town Label
         choropleth.geojson.add_to(map)
-        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"],aliases=["Town:","Price:$"] ,labels=True))
+        choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"],aliases=["Town:","Price($):"] ,labels=True))
 
 
 
