@@ -18,7 +18,8 @@ st.markdown("""
         background: url("https://photos.app.goo.gl/uyKNHVR8prbKqveg7");
         background-size: cover;
         }
-    </style>""", unsafe_allow_html=True)
+    </style>
+    """, unsafe_allow_html=True)
 
 st.title('Property Wagon - HDB Resale Price Predictor')
 
@@ -164,7 +165,8 @@ def main():
     #     return st.write('Invalid postal code, please enter a valid postal code.')
 
     if submit_button:
-        st.markdown("""<style>
+        st.markdown("""
+        <style>
         .stApp {
         background: url("https://photos.app.goo.gl/uyKNHVR8prbKqveg7");
         background-size: cover;
