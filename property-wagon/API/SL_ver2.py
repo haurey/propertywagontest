@@ -229,7 +229,7 @@ def main():
         medium_px['4-ROOMTest'] = medium_px['4-ROOM'].astype('str').apply(lambda x : f'${x[0:-3]},{x[-3:]}' if len(x)==6 else x )
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
-                               columns=('Name','4-ROOM'),
+                               columns=('Name','4-ROOM','4-ROOMTest'),
                                key_on='feature.properties.Name',fill_color="Reds",
                                fill_opacity=0.6)
         # Display Town Label
