@@ -159,25 +159,6 @@ def predict(postal_code):
     # return y_pred_df
     return popup_df, town_test
 
-bg_image_path = Path('/app/propertywagontest/property-wagon/API/data/HDBBackground.webp')
-
-def get_base64(bin_file):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
-
-def set_background(png_file):
-        bin_str = get_base64(png_file)
-        page_bg_img = '''
-        <style>
-        body {
-        background-image: url("data:image/png;base64,%s");
-        background-size: cover;
-        }
-        </style>
-        ''' % bin_str
-        st.markdown(page_bg_img, unsafe_allow_html=True)
-
 def main():
     # if getcoordinates(postal_code) is None:
     #     return st.write('Invalid postal code, please enter a valid postal code.')
@@ -186,8 +167,7 @@ def main():
         if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200 or (requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').content==b'{"found":0,"totalNumPages":0,"pageNum":1,"results":[]}'): 
             st.write('Invalid postal code, please re-enter.')
         else: 
-            st.markdown("""
-            <style>
+            st.markdown("""<style>
                 .stApp {
                 background: url(https://photos.app.goo.gl/uyKNHVR8prbKqveg7);
                 background-size: cover;
