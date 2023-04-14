@@ -21,6 +21,13 @@ st.markdown("""
     </style>""", unsafe_allow_html=True)
 
 st.title('Property Wagon - HDB Resale Price Predictor')
+st.markdown("""
+    <style>
+        .stApp {
+        background: url("https://photos.app.goo.gl/CdcfZ5bEoLne7YVP6");
+        background-size: cover;
+        }
+    </style>""", unsafe_allow_html=True)
 
 # SIDEBAR
 st.sidebar.header('Enter the postal code and floor level to find out more!')
