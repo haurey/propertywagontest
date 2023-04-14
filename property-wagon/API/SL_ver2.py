@@ -14,7 +14,7 @@ st.set_page_config(layout="wide")
 st.markdown("""
     <style>
         .stApp {
-        background: url("https://photos.app.goo.gl/p72R8UVRQtzZdhLD9");
+        background: url("https://photos.app.goo.gl/i1KmVW6WYCD7cr116");
         background-size: cover;
         }
     </style>""", unsafe_allow_html=True)
