@@ -208,6 +208,7 @@ def main():
                 plot_df1 = plot_df[plot_df['Year']>=pd.to_datetime("2023-03-01")]
                 plot_df1.rename(columns={'Resale_Price':'Forecasted_Price'},inplace=True)
                 plot_df2 = plot_df[plot_df['Year']<=pd.to_datetime("2023-03-01")]
+                plot_df2.rename(columns={'Resale_Price':'Price'},inplace=True)
                 plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Year')
                 fig = px.line(plot_df3, x="Year", y=["Resale_Price","Forecasted_Price"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
                 fig.update_layout(yaxis_title="Price($)",
