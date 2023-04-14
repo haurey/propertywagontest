@@ -253,9 +253,7 @@ def main():
         st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
         st.write('Data sources: Data.gov.sg, Onemap.sg & other online sources.')       
         
-        
-    st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
-    st.write('Data sources: Data.gov.sg, Onemap.sg & other online sources.')
+    
 
 if __name__ == "__main__":
     main()
