@@ -147,9 +147,9 @@ def predict(postal_code):
     popup_df = popup_df.drop(columns='index')
     popup_df = popup_df.reset_index()
     popup_df['index'] = popup_df['index'].apply(lambda x : x+1)
-    popup_df.set_index(popup_df['index'])
+    popup_df.set_index(popup_df['index'],inplace=True)
     popup_df['Predicted Price'] = popup_df['Predicted Price'].astype('str')
-    popup_df['Predicted Price'] =  popup_df['Predicted Price'].apply(lambda x : f'{x[0:-3]},{x[-3:]}')
+    popup_df['Predicted Price'] =  popup_df['Predicted Price'].apply(lambda x : f'{x[0:-3]},{x[-3:]}' if len(x)<=6 else f'{x[0]},{x[1:-3]},{x[-3:]}' )
     # return type_model_lease_floor
     # return y_pred_df
     return popup_df, town_test
