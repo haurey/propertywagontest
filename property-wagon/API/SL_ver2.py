@@ -145,6 +145,10 @@ def predict(postal_code):
                              "floor_area_sqm": "Floor Area (sqm)"},  inplace=True)
     popup_df = popup_df.reset_index()
     popup_df = popup_df.drop(columns='index')
+    popup_df = popup_df.reset_index()
+    popup_df['index'] = popup_df['index'].apply(lambda x : x+1)
+    popup_df.set_index(popup_df['index'])
+    popup_df['Predicted Price'] =  popup_df['Predicted Price'].apply(lambda x : f'{x[0:-3]},{x[-3:]}')
     # return type_model_lease_floor
     # return y_pred_df
     return popup_df, town_test
