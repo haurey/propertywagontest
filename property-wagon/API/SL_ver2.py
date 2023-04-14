@@ -18,7 +18,7 @@ st.markdown("""
         background: url("https://photos.app.goo.gl/CdcfZ5bEoLne7YVP6");
         background-size: cover;
         }
-    </style>""", unsafe_allow_html=False)
+    </style>""", unsafe_allow_html=True)
 
 st.title('Property Wagon - HDB Resale Price Predictor')
 
