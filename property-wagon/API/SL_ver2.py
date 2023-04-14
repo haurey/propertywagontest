@@ -186,6 +186,13 @@ def main():
         if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200 or (requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').content==b'{"found":0,"totalNumPages":0,"pageNum":1,"results":[]}'): 
             st.write('Invalid postal code, please re-enter.')
         else: 
+            st.markdown("""
+            <style>
+                .stApp {
+                background: url(https://photos.app.goo.gl/uyKNHVR8prbKqveg7);
+                background-size: cover;
+                }
+            </style>""", unsafe_allow_html=True)
 
             lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
 
