@@ -32,7 +32,7 @@ def getcoordinates(postal_code):
         lon = resultsdict['results'][0]['LONGITUDE']
         blk_no = resultsdict['results'][0]['BLK_NO']
         street_name = resultsdict['results'][0]['ROAD_NAME']
-        address = ''.join(resultsdict['results'][0]['BLK_NO']," ",resultsdict['results'][0]['ROAD_NAME'])
+        address = resultsdict['results'][0]['BLK_NO']+" "+resultsdict['results'][0]['ROAD_NAME']
 
         return lat, lon, blk_no, street_name, address
     else:
