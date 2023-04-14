@@ -144,9 +144,8 @@ def predict(postal_code):
                              "lease_commence_date": "Lease Commcence Date",
                              "floor_area_sqm": "Floor Area (sqm)"},  inplace=True)
     popup_df.index = np.arange(1,len(popup_df)+1)
-    popup_df.set_index(popup_df['index'],inplace=True)
     popup_df['Predicted Price'] = popup_df['Predicted Price'].astype('str')
-    popup_df['Predicted Price'] =  popup_df['Predicted Price'].apply(lambda x : f'{x[0:-3]},{x[-3:]}' if len(x)<=6 else f'{x[0]},{x[1:-3]},{x[-3:]}' )
+    popup_df['Predicted Price'] =  popup_df['Predicted Price'].apply(lambda x : f'{x[0:-3]},{x[-3:]}' if len(x)<=6 else f'{x[0]},{x[1:4]},{x[-3:]}' )
     # return type_model_lease_floor
     # return y_pred_df
     return popup_df, town_test
