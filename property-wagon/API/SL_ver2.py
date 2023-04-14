@@ -15,11 +15,10 @@ st.set_page_config(layout="wide")
 st.markdown("""
     <style>
         .stApp {
-        background: url("https://photos.app.goo.gl/PiupDT2MbwjjJkFi7");
+        background: url("https://photos.app.goo.gl/ay9E8xVGHP1emtpF7");
         background-size: cover;
         }
-    </style>
-    """, unsafe_allow_html=True)
+    </style>""", unsafe_allow_html=True)
 
 st.title('Property Wagon - HDB Resale Price Predictor')
 
@@ -166,9 +165,9 @@ def main():
 
     if submit_button:
         st.markdown("""
-        <style>
+    <style>
         .stApp {
-        background: url("https://photos.app.goo.gl/PiupDT2MbwjjJkFi7");
+        background: url("https://photos.app.goo.gl/ay9E8xVGHP1emtpF7");
         background-size: cover;
         }
     </style>""", unsafe_allow_html=True)
