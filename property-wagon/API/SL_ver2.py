@@ -237,9 +237,6 @@ def main():
         choropleth.geojson.add_to(map)
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"],aliases=["Town:","Price($):"] ,labels=True))
 
-
-
-        set_background(bg_image_path)
         st.write('Hover cursor over the map to view median price of HDB in each town.(As of Mar 2023)')
         
         folium_static(map, width=950, height=550)
