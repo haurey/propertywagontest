@@ -226,6 +226,7 @@ def main():
         
         map = folium.Map(location=[1.35, 103.81], zoom_start=11, control_scale=True)
         medium_px = pd.read_csv('/app/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
+        medium_px['4-ROOM'] = medium_px['4-ROOM'].astype('str').apply(lambda x : f'${x[0:-3]},{x[-3:]}' if len(x)==6 else x )
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
                                columns=('Name','4-ROOM'),
