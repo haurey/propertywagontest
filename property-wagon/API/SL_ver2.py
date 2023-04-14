@@ -174,51 +174,54 @@ def main():
     #     return st.write('Invalid postal code, please enter a valid postal code.')
 
     if submit_button:
+        if requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').status_code!=200 or (requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1').content==b'{"found":0,"totalNumPages":0,"pageNum":1,"results":[]}'): 
+            st.write('Invalid postal code, please re-enter.')
+        else: 
 
-        lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
+            lat, lon, blk_no, street_name, address = getcoordinates(postal_code)
 
-        # DISPLAY ADDRESS BASED ON POSTAL CODE
-        st.write('Address: ', address)
+            # DISPLAY ADDRESS BASED ON POSTAL CODE
+            st.write('Address: ', address)
 
-        # Display map
-        map = folium.Map(location=[lat, lon], zoom_start=17, control_scale=True)
-        tooltip = "Click for more details!"
+            # Display map
+            map = folium.Map(location=[lat, lon], zoom_start=17, control_scale=True)
+            tooltip = "Click for more details!"
 
-        # Price prediction
-        popup_df, town = predict(postal_code)
-        popup_html = popup_df.to_html(
-            classes="table table-striped table-hover table-condensed table-responsive"
-            )
+            # Price prediction
+            popup_df, town = predict(postal_code)
+            popup_html = popup_df.to_html(
+                classes="table table-striped table-hover table-condensed table-responsive"
+                )
 
-        # Popup marker
-        popup = folium.Popup(popup_html, max_width=500)
-        folium.Marker(location=[lat, lon], popup=popup,  tooltip=tooltip).add_to(map)
+            # Popup marker
+            popup = folium.Popup(popup_html, max_width=500)
+            folium.Marker(location=[lat, lon], popup=popup,  tooltip=tooltip).add_to(map)
 
 
-        # folium.Marker([30, -100], popup=popup).add_to(m)
-        st_map = folium_static(map, width=800, height=400)
-        
-        flattypelist = ['1 ROOM','2 ROOM','3 ROOM','4 ROOM','5 ROOM','EXECUTIVE','MULTI-GENERATION']
-        for i in flattypelist:
-            pathtofile = Path(f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
-            if pathtofile.is_file():
-                plot_df = pd.read_csv(pathtofile)
-                plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
-                plot_df['Date'] = plot_df['Date'].astype('datetime64')
-                plot_df1 = plot_df[plot_df['Date']>=pd.to_datetime("2023-03-01")]
-                plot_df1.rename(columns={'Resale_Price':'Forecasted_Price($)'},inplace=True)
-                plot_df2 = plot_df[plot_df['Date']<=pd.to_datetime("2023-03-01")]
-                plot_df2.rename(columns={'Resale_Price':'Price($)'},inplace=True)
-                plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Date')
-                fig = px.line(plot_df3, x="Date", y=["Price($)","Forecasted_Price($)"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
-                fig.update_layout(yaxis_title="Price($)",xaxis_title="Year",
-                    title = {
-                                    'y':0.9, # new
-                                    'x':0.4,
-                                    'xanchor': 'center',
-                                    'yanchor': 'top' # new
-                                    })
-                st.plotly_chart(fig, use_container_width=True)
+            # folium.Marker([30, -100], popup=popup).add_to(m)
+            st_map = folium_static(map, width=800, height=400)
+            
+            flattypelist = ['1 ROOM','2 ROOM','3 ROOM','4 ROOM','5 ROOM','EXECUTIVE','MULTI-GENERATION']
+            for i in flattypelist:
+                pathtofile = Path(f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
+                if pathtofile.is_file():
+                    plot_df = pd.read_csv(pathtofile)
+                    plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
+                    plot_df['Date'] = plot_df['Date'].astype('datetime64')
+                    plot_df1 = plot_df[plot_df['Date']>=pd.to_datetime("2023-03-01")]
+                    plot_df1.rename(columns={'Resale_Price':'Forecasted_Price($)'},inplace=True)
+                    plot_df2 = plot_df[plot_df['Date']<=pd.to_datetime("2023-03-01")]
+                    plot_df2.rename(columns={'Resale_Price':'Price($)'},inplace=True)
+                    plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Date')
+                    fig = px.line(plot_df3, x="Date", y=["Price($)","Forecasted_Price($)"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
+                    fig.update_layout(yaxis_title="Price($)",xaxis_title="Year",
+                        title = {
+                                        'y':0.9, # new
+                                        'x':0.4,
+                                        'xanchor': 'center',
+                                        'yanchor': 'top' # new
+                                        })
+                    st.plotly_chart(fig, use_container_width=True)
 
     
 
@@ -248,7 +251,7 @@ def main():
         
         
     st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
-    st.write('Data source: Data.gov.sg, Onemap.sg & other online sources.')
+    st.write('Data sources: Data.gov.sg, Onemap.sg & other online sources.')
 
 if __name__ == "__main__":
     main()
