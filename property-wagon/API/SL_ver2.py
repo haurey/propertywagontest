@@ -230,8 +230,7 @@ def main():
                                data=medium_px,
                                columns=('Name','4-ROOM'),
                                key_on='feature.properties.Name',fill_color="Reds",
-                               fill_opacity=0.6,
-                               legend_name='Medium Resale Price of 4-room HDB')
+                               fill_opacity=0.6)
         # Display Town Label
         choropleth.geojson.add_to(map)
         choropleth.geojson.add_child(folium.features.GeoJsonTooltip(fields=["Name","4-ROOM"], labels=False))
@@ -239,12 +238,15 @@ def main():
 
 
         set_background(bg_image_path)
-        st.write('Hover your cursor over the map to check median HDB price of each town.')
+        st.write('Hover cursor over the map to check median HDB price of each town.(As of Mar 2023)')
         
         folium_static(map, width=950, height=550)
         
         st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
         # CREDITS
+        
+        
+        
     st.write('Data Source from data.gov.sg, onemap.sg, and several other online sources')
 
 
