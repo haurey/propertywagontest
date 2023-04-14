@@ -11,6 +11,13 @@ import plotly.express as px
 import base64
 
 st.set_page_config(layout="wide")
+st.markdown("""
+    <style>
+        .stApp {
+        background: url("https://photos.app.goo.gl/c8v6D16uh1Ru5mUQA");
+        background-size: cover;
+        }
+    </style>""", unsafe_allow_html=True)
 st.title('Property Wagon - HDB Resale Price Predictor')
 
 # SIDEBAR
