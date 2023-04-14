@@ -32,7 +32,7 @@ def getcoordinates(postal_code):
         lon = resultsdict['results'][0]['LONGITUDE']
         blk_no = resultsdict['results'][0]['BLK_NO']
         street_name = resultsdict['results'][0]['ROAD_NAME']
-        address = resultsdict['results'][0]['ADDRESS']
+        address = ''.join(resultsdict['results'][0]['BLK_NO']," ",resultsdict['results'][0]['ROAD_NAME'])
 
         return lat, lon, blk_no, street_name, address
     else:
@@ -238,7 +238,7 @@ def main():
 
 
         set_background(bg_image_path)
-        st.write('Hover cursor over the map to check median HDB price of each town.(As of Mar 2023)')
+        st.write('Hover cursor over the map to view median HDB price of each town.(As of Mar 2023)')
         
         folium_static(map, width=950, height=550)
         
