@@ -230,7 +230,7 @@ def main():
     else:
         # DISPLAY MAP default
         
-        map = folium.Map(location=[1.368643, 103.836289], zoom_start=11.5, control_scale=True)
+        map = folium.Map(location=[1.361516, 103.803701], zoom_start=11, control_scale=True)
         medium_px = pd.read_csv('/app/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
         choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
