@@ -220,7 +220,7 @@ def main():
                                     })
                 st.plotly_chart(fig, use_container_width=True)
 
-        st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
+    
 
     else:
         # DISPLAY MAP default
@@ -243,13 +243,12 @@ def main():
         
         folium_static(map, width=950, height=550)
         
-        st.write('Boundaries based on Master Plan 2014 Planning Area Boundary (No Sea)')
+        
         # CREDITS
         
         
-        
-    st.write('Data Source from data.gov.sg, onemap.sg, and several other online sources')
-
+    st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
+    st.write('Data source: Data.gov.sg, Onemap.sg & other online sources.')
 
 if __name__ == "__main__":
     main()
