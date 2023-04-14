@@ -203,15 +203,15 @@ def main():
             pathtofile = Path(f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
             if pathtofile.is_file():
                 plot_df = pd.read_csv(pathtofile)
-                plot_df.rename(columns={'y':'Resale_Price','ds':'Year'},inplace=True)
-                plot_df['Year'] = plot_df['Year'].astype('datetime64')
-                plot_df1 = plot_df[plot_df['Year']>=pd.to_datetime("2023-03-01")]
+                plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
+                plot_df['Date'] = plot_df['Date'].astype('datetime64')
+                plot_df1 = plot_df[plot_df['Date']>=pd.to_datetime("2023-03-01")]
                 plot_df1.rename(columns={'Resale_Price':'Forecasted_Price'},inplace=True)
-                plot_df2 = plot_df[plot_df['Year']<=pd.to_datetime("2023-03-01")]
+                plot_df2 = plot_df[plot_df['Date']<=pd.to_datetime("2023-03-01")]
                 plot_df2.rename(columns={'Resale_Price':'Price'},inplace=True)
-                plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Year')
-                fig = px.line(plot_df3, x="Year", y=["Price","Forecasted_Price"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
-                fig.update_layout(yaxis_title="Price($)",
+                plot_df3 = pd.merge(plot_df2,plot_df1,how='outer',on='Date')
+                fig = px.line(plot_df3, x="Date", y=["Price","Forecasted_Price"],line_shape="spline", render_mode="svg",title=f'Average Resale {i} HDB Price in {town}')
+                fig.update_layout(yaxis_title="Price($)",xaxis_title="Year",
                     title = {
                                     'y':0.9, # new
                                     'x':0.4,
