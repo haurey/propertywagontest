@@ -222,6 +222,8 @@ def main():
                                         'yanchor': 'top' # new
                                         })
                     st.plotly_chart(fig, use_container_width=True)
+            st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
+            st.write('Data sources: Data.gov.sg, Onemap.sg & other online sources.')
 
     
 
@@ -248,6 +250,8 @@ def main():
         
         
         # CREDITS
+        st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
+        st.write('Data sources: Data.gov.sg, Onemap.sg & other online sources.')       
         
         
     st.write('Boundaries are based on "Master Plan 2014 Planning Area Boundary"')
