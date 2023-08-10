@@ -10,6 +10,9 @@ from pathlib import Path
 import plotly.express as px
 import base64
 
+
+print("path is") 
+print(Path.cwd())
 st.set_page_config(layout="wide")
 
 st.title('Property Wagon - HDB Resale Price Predictor')
@@ -96,10 +99,10 @@ def predict(postal_code):
     y_pred = []
 
     # load model
-    with open('/app/propertywagontest/property-wagon/API/data/model', 'rb') as m:
+    with open('/property-wagon/API/data/model', 'rb') as m:
         model = pickle.load(m)
     # load pipeline
-    with open('/app/propertywagontest/property-wagon/API/data/columntransformer', 'rb') as c:
+    with open('/property-wagon/API/data/columntransformer', 'rb') as c:
         columntransformer = pickle.load(c)
 
     for index, row in type_model_lease_floor.iterrows():
@@ -186,7 +189,7 @@ def main():
             
             flattypelist = ['1 ROOM','2 ROOM','3 ROOM','4 ROOM','5 ROOM','EXECUTIVE','MULTI-GENERATION']
             for i in flattypelist:
-                pathtofile = Path(f'/app/propertywagontest/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
+                pathtofile = Path(f'/property-wagon/propertywagontimeseries/processed_data/{town}{i}.csv')
                 if pathtofile.is_file():
                     plot_df = pd.read_csv(pathtofile)
                     plot_df.rename(columns={'y':'Resale_Price','ds':'Date'},inplace=True)
@@ -214,8 +217,8 @@ def main():
         # DISPLAY MAP default
         
         map = folium.Map(location=[1.361516, 103.803701], zoom_start=11, control_scale=True)
-        medium_px = pd.read_csv('/app/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
-        choropleth = folium.Choropleth(geo_data='/app/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
+        medium_px = pd.read_csv('/Users/Ben/code/haurey/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
+        choropleth = folium.Choropleth(geo_data='/Users/Ben/code/haurey/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
                                columns=('Name','4-ROOM'),
                                key_on='feature.properties.Name',fill_color="Reds",
