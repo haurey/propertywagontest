@@ -72,8 +72,8 @@ def predict(postal_code):
             street_name = street_name.replace(key, val)
 
     # Load data
-    train_data = pd.read_csv('/app/propertywagontest/property-wagon/API/data/resale-flat-prices-from-2003-2023.csv')
-    econ_data = pd.read_csv('/app/propertywagontest/property-wagon/API/data/econ_data.csv')
+    train_data = pd.read_csv('/mount/src/propertywagontest/property-wagon/API/data/resale-flat-prices-from-2003-2023.csv')
+    econ_data = pd.read_csv('/mount/src/propertywagontest/property-wagon/API/data/econ_data.csv')
 
     # Retrieve variables
     town_test = train_data[train_data['street_name'] == street_name]['town'].head(1).values[0]
