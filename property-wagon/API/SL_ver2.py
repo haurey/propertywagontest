@@ -217,8 +217,8 @@ def main():
         # DISPLAY MAP default
         
         map = folium.Map(location=[1.361516, 103.803701], zoom_start=11, control_scale=True)
-        medium_px = pd.read_csv('/Users/Ben/code/haurey/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
-        choropleth = folium.Choropleth(geo_data='/Users/Ben/code/haurey/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
+        medium_px = pd.read_csv('/mount/src/propertywagontest/property-wagon/API/data/hdb_median_prices_by_town.csv')
+        choropleth = folium.Choropleth(geo_data='/mount/src/propertywagontest/property-wagon/API/data/merged_gdf.geojson',
                                data=medium_px,
                                columns=('Name','4-ROOM'),
                                key_on='feature.properties.Name',fill_color="Reds",
