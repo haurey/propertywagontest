@@ -29,7 +29,7 @@ submit_button = st.sidebar.button('SUBMIT')
 
 
 def getcoordinates(postal_code):
-    req = requests.get('https://developers.onemap.sg/commonapi/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
+    req = requests.get('https://www.onemap.gov.sg/api/common/elastic/search?searchVal='+postal_code+'&returnGeom=Y&getAddrDetails=Y&pageNum=1')
     resultsdict = eval(req.text)
     if len(resultsdict['results'])>0:
         lat = resultsdict['results'][0]['LATITUDE']
